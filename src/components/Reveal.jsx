@@ -23,7 +23,7 @@ function Reveal({
       className={className}
       initial={{ opacity: 0, ...offset }}
       transition={{
-        duration: 0.85,
+        duration: 0.7,
         delay,
         ease: [0.22, 1, 0.36, 1],
       }}

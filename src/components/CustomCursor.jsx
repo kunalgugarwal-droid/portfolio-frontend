@@ -1,7 +1,7 @@
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { useEffect, useMemo, useState } from 'react'
 
-const DOT_SIZE = 20
+const DOT_SIZE = 12
 const HOVER_SELECTOR =
   'a, button, input, textarea, select, [role="button"], .cursor-hover'
 
@@ -28,9 +28,9 @@ function CustomCursor() {
   const y = useMotionValue(-100)
   const springConfig = useMemo(
     () => ({
-      damping: 24,
-      mass: 0.6,
-      stiffness: 200,
+      damping: 26,
+      mass: 0.45,
+      stiffness: 260,
     }),
     [],
   )

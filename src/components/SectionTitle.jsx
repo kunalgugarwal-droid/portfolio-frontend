@@ -1,19 +1,19 @@
-import Reveal from './Reveal.jsx'
+import RevealOnScroll from './RevealOnScroll.jsx'
 
 function SectionTitle({ eyebrow, title, description, action, align = 'space' }) {
   const classes = ['section-title', `section-title--${align}`].join(' ')
 
   return (
     <div className={classes}>
-      <Reveal className="section-title__copy">
+      <RevealOnScroll className="section-title__copy">
         {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
         <h2 className="section-heading">{title}</h2>
         {description ? <p className="section-description">{description}</p> : null}
-      </Reveal>
+      </RevealOnScroll>
       {action ? (
-        <Reveal className="section-title__action" delay={0.1}>
+        <RevealOnScroll className="section-title__action" delay={0.1}>
           {action}
-        </Reveal>
+        </RevealOnScroll>
       ) : null}
     </div>
   )

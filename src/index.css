@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 :root {
   --bg: #000;
   --bg-soft: #0a0a0a;
@@ -52,8 +54,8 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 20px;
-  height: 20px;
+  width: 12px;
+  height: 12px;
   border-radius: 999px;
   background: #ffffff;
   pointer-events: none;
@@ -63,6 +65,31 @@ body {
 
 .custom-cursor--hover {
   background: var(--accent);
+}
+
+.project-card__pill,
+.notched-button,
+.icon-link,
+.icon-chip,
+.voice-grid__links a,
+.contact-cta__links a {
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.notched-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.35);
+}
+
+.icon-link:hover,
+.icon-chip:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 
@@ -567,6 +594,8 @@ img {
 }
 
 .project-card {
+  display: block;
+  height: 100%;
   position: relative;
   overflow: hidden;
   min-height: 28rem;
@@ -598,6 +627,24 @@ img {
   z-index: 1;
 }
 
+.project-card__pill {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0.55rem 1.2rem;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #000000;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  pointer-events: none;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+}
+
 .project-card__title,
 .project-card__category {
   margin: 0;
@@ -617,6 +664,10 @@ img {
 
 .project-card:hover .project-card__image {
   transform: scale(1.04);
+}
+
+.project-card:hover .project-card__tint {
+  opacity: 0.32;
 }
 
 .process-grid {
@@ -1258,4 +1309,131 @@ img {
   .contact-info__group {
     padding: 1.15rem;
   }
+}
+
+/* --- CUSTOM HERO FIX FOR HOMEPAGE --- */
+
+.homepage-hero-wrapper {
+  position: relative;
+  width: 100vw !important;
+  max-width: 100vw !important;
+  margin-left: calc(-50vw + 50%) !important;
+  margin-right: calc(-50vw + 50%) !important;
+  margin-top: calc(var(--nav-offset) * -1) !important;
+  display: block !important;
+  background-color: #000;
+  z-index: 10; 
+}
+
+.homepage-hero-wrapper .hero-text-section {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.homepage-hero-wrapper .hero-badge {
+  position: absolute;
+  top: 140px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  z-index: 2;
+}
+
+.homepage-hero-wrapper .hero-title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  z-index: 2;
+}
+
+.homepage-hero-wrapper .hero-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(4.5rem, 12vw, 13rem);
+  font-weight: 700;
+  line-height: 0.82;
+  letter-spacing: -0.06em;
+  text-transform: uppercase;
+  color: #fff;
+  text-align: center;
+}
+
+.homepage-hero-wrapper .hero-footer {
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  width: 100%;
+  padding: 0 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .homepage-hero-wrapper .hero-badge {
+    top: 100px;
+  }
+  .homepage-hero-wrapper .hero-footer {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 0 20px;
+    bottom: 20px;
+  }
+  .homepage-hero-wrapper .hero-title {
+    font-size: clamp(3rem, 10vw, 5rem);
+  }
+}
+
+.homepage-hero-wrapper .hero-image-section {
+  position: sticky !important;
+  top: 0 !important;
+  width: 100%;
+  background-color: #000;
+  z-index: 5;
+}
+
+.homepage-hero-wrapper .hero-image-full {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* --- ABOUT NOTCHED TRANSITION --- */
+.about-transition-wrapper {
+  position: relative;
+  width: 100%;
+  margin-top: -60px !important;
+  padding-top: 80px !important;
+  padding-bottom: 2rem !important;
+  background-color: #000;
+  clip-path: polygon(0 60px, calc(100% - 60px) 0, 100% 60px, 100% 100%, 0 100%);
+  z-index: 15;
+}
+
+.about-transition-container {
+  width: var(--grid-width);
+  margin: 0 auto;
 }

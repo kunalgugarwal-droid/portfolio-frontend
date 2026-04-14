@@ -1,13 +1,13 @@
 import { socialLinks } from '../data/siteData.js'
 import MediaFrame from './MediaFrame.jsx'
 import NotchedButton from './NotchedButton.jsx'
-import Reveal from './Reveal.jsx'
+import RevealOnScroll from './RevealOnScroll.jsx'
 
 function ContactCta() {
   return (
     <section className="contact-cta">
       <div className="contact-cta__grid">
-        <Reveal className="contact-cta__copy">
+        <RevealOnScroll className="contact-cta__copy">
           <p className="eyebrow">Connect yourself into cyberpunk universe.</p>
           <h2 className="display-title display-title--compact">
             Let&apos;s work
@@ -29,14 +29,14 @@ function ContactCta() {
               ))}
             </div>
           </div>
-        </Reveal>
-        <Reveal delay={0.1}>
+        </RevealOnScroll>
+        <RevealOnScroll delay={0.1}>
           <MediaFrame
             alt="Cyberpunk portrait"
             className="contact-cta__media"
             src="https://framerusercontent.com/images/ufe8eepr2kNoeVcCs8KWPjP4UFo.png"
           />
-        </Reveal>
+        </RevealOnScroll>
       </div>
     </section>
   )

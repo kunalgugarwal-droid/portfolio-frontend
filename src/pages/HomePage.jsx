@@ -3,8 +3,9 @@ import FAQAccordion from '../components/FAQAccordion.jsx'
 import MediaFrame from '../components/MediaFrame.jsx'
 import NotchedButton from '../components/NotchedButton.jsx'
 import ProjectCard from '../components/ProjectCard.jsx'
-import Reveal from '../components/Reveal.jsx'
+import TextReveal from '../components/TextReveal.jsx'
 import SectionTitle from '../components/SectionTitle.jsx'
+import Reveal from '../components/Reveal.jsx'
 import {
   awards,
   clientLogos,
@@ -24,51 +25,65 @@ const featuredProjects = getProjectsBySlugs(homeFeaturedSlugs)
 function HomePage() {
   return (
     <>
-      <section className="hero hero--home" id="top">
-        <Reveal className="hero__badge">
-          <span className="status-dot" />
-          AVAILABLE FOR FREELANCE
-        </Reveal>
-        <Reveal className="hero__title-block" delay={0.1}>
-          <p className="hero__intro">{siteIdentity.name.split(' ')[0]}</p>
-          <h1 className="display-title display-title--home">{siteIdentity.shortName}</h1>
-        </Reveal>
-        <Reveal className="hero__meta" delay={0.2}>
-          <p className="hero__location">{siteIdentity.location}</p>
-          <div className="hero__roles">
-            <p>{siteIdentity.rolePrimary}</p>
-            <p>{siteIdentity.roleSecondary}</p>
+      <div className="homepage-hero-wrapper">
+        <section className="hero-text-section" id="top">
+          <Reveal className="hero-badge">
+            <span className="status-dot" />
+            AVAILABLE FOR FREELANCE
+          </Reveal>
+          
+          <div className="hero-title-container">
+            <TextReveal 
+              elementType="h1"
+              className="hero-title"
+              text="GUETABERTO DAVIDSON"
+              split="word"
+              delay={0.1}
+              staggerDuration={0.06}
+            />
           </div>
-          <NotchedButton to="/#about">View About KD6*</NotchedButton>
-        </Reveal>
-      </section>
+          
+          <Reveal className="hero-footer" delay={0.2}>
+            <div className="hero-location">BASED IN LA, CALIFORNIA</div>
+            <div className="hero-roles">///DIGITAL DESIGNER + FRAMER DEVELOPER</div>
+          </Reveal>
+        </section>
 
-      <Reveal id="image-1">
-        <MediaFrame
-          alt="Hero portrait"
-          className="hero-media"
-          src="https://framerusercontent.com/images/Dqh3FA7ENXaHQxWUEi11hFrOF5Y.png"
-        />
-      </Reveal>
+        <section className="hero-image-section">
+          <Reveal id="image-1" delay={0.3}>
+            <img
+              alt="Hero portrait"
+              className="hero-image-full"
+              src="https://framerusercontent.com/images/Dqh3FA7ENXaHQxWUEi11hFrOF5Y.png"
+            />
+          </Reveal>
+        </section>
 
-      <section className="split-copy" id="about">
-        <Reveal>
-          <p className="eyebrow">ABOUT KD6</p>
-          <h2 className="display-title display-title--compact">
-            I am a future
-            <br />
-            digital designer.
-          </h2>
-        </Reveal>
-        <Reveal className="split-copy__aside" delay={0.1}>
-          <p className="eyebrow">Challenges &amp; Approach</p>
-          <p className="section-description">
-            I weave together bold strategy and creative execution to produce
-            thought-provoking, digital-first experiences with a cinematic cyberpunk
-            edge.
-          </p>
-        </Reveal>
-      </section>
+        <div className="about-transition-wrapper">
+          <div className="about-transition-container">
+            <section className="split-copy" id="about">
+              <div className="flex flex-col gap-2">
+                <p className="eyebrow">ABOUT KD6</p>
+                <TextReveal
+                  elementType="h2"
+                  className="display-title display-title--compact manifesto__title"
+                  text="I am a future digital designer."
+                  split="word"
+                  staggerDuration={0.05}
+                />
+              </div>
+              <Reveal className="split-copy__aside" delay={0.1}>
+                <p className="eyebrow">Challenges &amp; Approach</p>
+                <p className="section-description">
+                  I weave together bold strategy and creative execution to produce
+                  thought-provoking, digital-first experiences with a cinematic cyberpunk
+                  edge.
+                </p>
+              </Reveal>
+            </section>
+          </div>
+        </div>
+      </div>
 
       <section className="logo-marquee">
         <div className="logo-marquee__track">
@@ -149,15 +164,15 @@ function HomePage() {
             thought-provoking digital realistic experiences to the users.
           </p>
         </Reveal>
-        <Reveal delay={0.1}>
-          <p className="manifesto__title">
-            I am
-            <br />
-            evolutionarily
-            <br />
-            wired to sleek wonder.
-          </p>
-        </Reveal>
+        <div className="relative pt-8">
+          <TextReveal
+            elementType="p"
+            className="manifesto__title"
+            text="I am evolutionarily wired to sleek wonder."
+            split="word"
+            staggerDuration={0.08}
+          />
+        </div>
       </section>
 
       <Reveal>
@@ -169,10 +184,16 @@ function HomePage() {
       </Reveal>
 
       <section className="voice-grid">
-        <Reveal>
+        <Reveal className="flex flex-col gap-4">
           <p className="eyebrow">VOICE OF DA-VID</p>
-          <h2 className="section-heading">For brands. For agencies.</h2>
-          <p className="voice-grid__code">_D4V1D*M00R3_5H / r9H4DnOj6LVw2C</p>
+          <TextReveal
+            elementType="h2"
+            className="section-heading"
+            text="For brands. For agencies."
+            split="word"
+            staggerDuration={0.05}
+          />
+          <p className="voice-grid__code pt-4">_D4V1D*M00R3_5H / r9H4DnOj6LVw2C</p>
           <div className="voice-grid__links">
             {socialLinks.map((link) => (
               <a href={link.href} key={link.label} rel="noreferrer" target="_blank">
