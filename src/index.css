@@ -101,7 +101,7 @@ body::before {
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 28%, transparent 72%, rgba(255, 255, 255, 0.03)),
     url('https://framerusercontent.com/images/rR6HYXBrMmX4cRpXfXUOvpvpB0.png');
-  opacity: 0.11;
+  opacity: 0.055;
   content: '';
 }
 
@@ -517,7 +517,7 @@ img {
   background:
     linear-gradient(180deg, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0.9) 100%),
     url('https://framerusercontent.com/images/rR6HYXBrMmX4cRpXfXUOvpvpB0.png');
-  opacity: 0.24;
+  opacity: 0.12;
 }
 
 .split-copy,
@@ -1337,13 +1337,10 @@ img {
 }
 
 .homepage-hero-wrapper .hero-badge {
-  position: absolute;
-  top: 140px;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
   align-items: center;
   gap: 0.6rem;
+  margin-bottom: 1.5rem;
   color: var(--text-muted);
   font-family: var(--font-mono);
   font-size: 0.82rem;
@@ -1391,9 +1388,6 @@ img {
 }
 
 @media (max-width: 768px) {
-  .homepage-hero-wrapper .hero-badge {
-    top: 100px;
-  }
   .homepage-hero-wrapper .hero-footer {
     flex-direction: column;
     align-items: center;
