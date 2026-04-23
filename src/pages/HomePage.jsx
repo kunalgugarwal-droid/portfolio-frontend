@@ -20,7 +20,21 @@ import {
   workProcess,
 } from '../data/siteData.js'
 
-const featuredProjects = getProjectsBySlugs(homeFeaturedSlugs)
+const featuredProjects = getProjectsBySlugs(homeFeaturedSlugs).map((project, index) => ({
+  ...project,
+  title: [
+    'CINEMATIC EDIT',
+    'INSTAGRAM REEL',
+    'YOUTUBE VIDEO',
+    'CLIENT PROJECT',
+  ][index] ?? project.title,
+  category: [
+    'VIDEO EDITING',
+    'REEL EDIT',
+    'CONTENT EDIT',
+    'VIDEO EDITING',
+  ][index] ?? project.category,
+}))
 
 function HomePage() {
   return (
@@ -31,21 +45,21 @@ function HomePage() {
             <span className="status-dot" />
             AVAILABLE FOR FREELANCE
           </Reveal>
-          
+
           <div className="hero-title-container">
-            <TextReveal 
+            <TextReveal
               elementType="h1"
               className="hero-title"
-              text="GUETABERTO DAVIDSON"
+              text="Kishan Malviya"
               split="word"
               delay={0.1}
               staggerDuration={0.06}
             />
           </div>
-          
+
           <Reveal className="hero-footer" delay={0.2}>
-            <div className="hero-location">BASED IN LA, CALIFORNIA</div>
-            <div className="hero-roles">///DIGITAL DESIGNER + FRAMER DEVELOPER</div>
+            <div className="hero-location">BASED IN AHEMDABAD, INDIA</div>
+            <div className="hero-roles">///Cinematic Video Editor</div>
           </Reveal>
         </section>
 
@@ -63,21 +77,19 @@ function HomePage() {
           <div className="about-transition-container">
             <section className="split-copy" id="about">
               <div className="flex flex-col gap-2">
-                <p className="eyebrow">ABOUT KD6</p>
+                <p className="eyebrow">ABOUT KISHAN</p>
                 <TextReveal
                   elementType="h2"
                   className="display-title display-title--compact manifesto__title"
-                  text="I am a future digital designer."
+                  text="I am a cinematic video editor."
                   split="word"
                   staggerDuration={0.05}
                 />
               </div>
               <Reveal className="split-copy__aside" delay={0.1}>
-                <p className="eyebrow">Challenges &amp; Approach</p>
+                <p className="eyebrow">Editing Style &amp; Approach</p>
                 <p className="section-description">
-                  I weave together bold strategy and creative execution to produce
-                  thought-provoking, digital-first experiences with a cinematic cyberpunk
-                  edge.
+                  I craft cinematic edits, reels, and social media videos with strong storytelling, smooth transitions, and high-quality visual impact.
                 </p>
               </Reveal>
             </section>
@@ -97,10 +109,10 @@ function HomePage() {
 
       <section className="section">
         <SectionTitle
-          action={<NotchedButton to="/work">View Portfolio*</NotchedButton>}
-          description="My creative spirit comes alive in the digital realm. With nimble fingers flying across the keyboard, I craft clear experiences out of nothing but ones and zeroes."
-          eyebrow="FEATURED CASES"
-          title="Featured cases"
+          action={<NotchedButton to="/work">View All Projects*</NotchedButton>}
+          description="I create cinematic edits, reels, and storytelling-driven videos that capture attention and deliver impact."
+          eyebrow="FEATURED WORK"
+          title="Featured work"
         />
         <div className="project-grid project-grid--featured">
           {featuredProjects.map((project, index) => (
