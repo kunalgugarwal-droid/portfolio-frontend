@@ -97,8 +97,8 @@ function ContactPage() {
         </Reveal>
         <Reveal className="contact-info__group" delay={0.08}>
           <p className="eyebrow">CURRENT LOCATION</p>
-          <strong>49th St. Los Angeles, California(CA), 90011</strong>
-          <span>United States</span>
+          <strong>Ahmedabad, India</strong>
+          <span>INDIA</span>
         </Reveal>
         <Reveal className="contact-info__group" delay={0.16}>
           <p className="eyebrow">PHONE</p>
@@ -107,8 +107,8 @@ function ContactPage() {
         </Reveal>
         <Reveal className="contact-info__group" delay={0.24}>
           <p className="eyebrow">EMAIL ME</p>
-          <a href="mailto:guetabertodavid@mail.design">guetabertodavid@mail.design</a>
-          <a href="mailto:zachenvy@mechealle.com">zachenvy@mechealle.com</a>
+          <a href="mailto: kishanmalviya@gmail.com"> kishanmalviya@gmail.com</a>
+        
         </Reveal>
       </section>
     </>

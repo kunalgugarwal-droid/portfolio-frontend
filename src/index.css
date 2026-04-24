@@ -1097,7 +1097,12 @@ img {
 .contact-form {
   display: grid;
   gap: 1.2rem;
-  padding: 1.5rem;
+  padding: 2rem;
+  background: rgba(10, 20, 30, 0.45);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45), 0 0 80px rgba(59, 130, 246, 0.06);
 }
 
 .contact-form__row {
@@ -1122,10 +1127,18 @@ img {
 .contact-form textarea {
   width: 100%;
   padding: 1rem 1.05rem;
-  border: 1px solid var(--border);
-  background: rgba(7, 7, 7, 0.86);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(10, 15, 25, 0.6);
   color: var(--text);
   resize: vertical;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: rgba(59, 130, 246, 0.5);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
 }
 
 .contact-form__submit {

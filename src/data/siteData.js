@@ -1,17 +1,18 @@
 export const siteIdentity = {
-  name: 'Guetaberto Davidson',
-  shortName: 'DAVIDSON',
-  footerWord: 'Guetaberto',
-  location: 'Based in LA, California',
-  rolePrimary: '///Digital Designer',
-  roleSecondary: '+ Framer Developer',
+  name: 'Kishan Malviya',
+  shortName: 'KISHAN',
+  footerWord: 'KishanMalviya',
+  location: 'Ahmedabad, India',
+  rolePrimary: '///Cinematic Video Editor',
+  roleSecondary: '+ Professional Video Editor',
   accent: '#0099ff',
 }
 
 export const socialLinks = [
-  { label: 'Instagram', href: 'https://www.instagram.com/' },
-  { label: 'Dribbble', href: 'https://dribbble.com/' },
-  { label: 'Twitter X', href: 'https://x.com/MandroDesign' },
+  { label: 'Instagram', href: 'https://instagram.com/kishanmalviya_1' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/kishan-malviya-054811370' },
+  { label: 'YouTube', href: 'https://youtube.com/@Afkishancreates' },
+  { label: 'Snapchat', href: 'https://snapchat.com/t/7Z5MtOCw' },
 ]
 
 export const clientLogos = [
