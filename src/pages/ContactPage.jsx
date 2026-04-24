@@ -26,18 +26,18 @@ function ContactPage() {
       `Name: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.message}`,
     )
 
-    window.location.href = `mailto:guetabertodavid@mail.design?subject=${subject}&body=${body}`
+    window.location.href = `mailto:kishanmalviy14@gmail.com?subject=${subject}&body=${body}`
   }
 
   return (
     <>
       <section className="contact-page">
         <Reveal className="contact-page__copy">
-          <p className="eyebrow">Ring A Bell!</p>
-          <h1 className="display-title display-title--compact">Reach out and let&apos;s create something amazing together.</h1>
+          <p className="eyebrow">Let&apos;s Connect!</p>
+          <h1 className="display-title display-title--compact">Have a project in mind? Let&apos;s create something cinematic together.</h1>
           <p className="hero-copy">
-            Reach out and let&apos;s create something amazing together. Let&apos;s achieve
-            greatness.
+            Reach out and let&apos;s turn your vision into a high-impact cinematic
+            story.
           </p>
         </Reveal>
         <Reveal delay={0.1}>
@@ -102,12 +102,11 @@ function ContactPage() {
         </Reveal>
         <Reveal className="contact-info__group" delay={0.16}>
           <p className="eyebrow">PHONE</p>
-          <strong>USA &nbsp; +1 13945 88734</strong>
-          <strong>AUS &nbsp; +1 14945 78297</strong>
+          <strong>IN &nbsp; +91 91668 36248</strong>
         </Reveal>
         <Reveal className="contact-info__group" delay={0.24}>
           <p className="eyebrow">EMAIL ME</p>
-          <a href="mailto: kishanmalviya@gmail.com"> kishanmalviya@gmail.com</a>
+          <a href="mailto: kishanmalviy14@gmail.com"> kishanmalviy14@gmail.com</a>
         
         </Reveal>
       </section>

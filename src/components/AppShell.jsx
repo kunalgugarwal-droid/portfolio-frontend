@@ -10,29 +10,29 @@ const MotionMain = motion.main
 
 function getPageTitle(pathname) {
   if (pathname === '/') {
-    return 'Dune - Portfolio & Creative Agency'
+    return 'Kishan Malviya - Cinematic Video Editor'
   }
 
   if (pathname === '/about') {
-    return 'About - Dune Creative Agency'
+    return 'About - Kishan Malviya'
   }
 
   if (pathname === '/work') {
-    return 'Selected Works - Dune Creative Agency'
+    return 'Selected Works - Kishan Malviya'
   }
 
   if (pathname === '/contact') {
-    return 'Contact - Dune Creative Agency'
+    return 'Contact - Kishan Malviya'
   }
 
   if (pathname.startsWith('/work/')) {
     const project = getProjectBySlug(pathname.replace('/work/', ''))
     if (project) {
-      return `${project.title} - Dune Creative Agency`
+      return `${project.title} - Kishan Malviya`
     }
   }
 
-  return 'Dune Creative Agency'
+  return 'Kishan Malviya - Cinematic Video Editor'
 }
 
 function AppShell() {

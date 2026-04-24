@@ -9,9 +9,6 @@ function Footer() {
         <p className="footer-word">{siteIdentity.footerWord}</p>
       </Reveal>
       <div className="site-footer__bar">
-        <a href="https://x.com/MandroDesign" rel="noreferrer" target="_blank">
-          ©2024 Mandro Designs
-        </a>
         <Link to="/#top">Go Back To Top</Link>
       </div>
     </footer>

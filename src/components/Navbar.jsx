@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { projects } from '../data/siteData.js'
+import { getProjectsBySlugs, homeFeaturedSlugs } from '../data/siteData.js'
 import NotchedButton from './NotchedButton.jsx'
 
 const navItems = [
@@ -11,7 +11,21 @@ const navItems = [
   { label: 'Contact', to: '/contact' },
 ]
 
-const featuredMenuProjects = projects.slice(0, 4)
+const featuredMenuProjects = getProjectsBySlugs(homeFeaturedSlugs).map((project, index) => ({
+  ...project,
+  title: [
+    'CINEMATIC EDIT',
+    'INSTAGRAM REEL',
+    'YOUTUBE VIDEO',
+    'CLIENT PROJECT',
+  ][index] ?? project.title,
+  category: [
+    'VIDEO EDITING',
+    'REEL EDIT',
+    'CONTENT EDIT',
+    'VIDEO EDITING',
+  ][index] ?? project.category,
+}))
 const MotionAside = motion.aside
 const MotionDiv = motion.div
 
@@ -95,7 +109,7 @@ function Navbar() {
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             >
               <div className="menu-overlay__header">
-                <p className="eyebrow">Cyberpunk Navigation</p>
+                <p className="eyebrow">Navigation</p>
                 <button
                   aria-label="Close navigation menu"
                   className="menu-overlay__close"
@@ -124,7 +138,7 @@ function Navbar() {
                 </nav>
                 <div className="menu-overlay__meta">
                   <div>
-                    <p className="eyebrow">Featured Cases</p>
+                    <p className="eyebrow">Featured Work</p>
                     <div className="menu-overlay__projects">
                       {featuredMenuProjects.map((project) => (
                         <Link
@@ -141,9 +155,9 @@ function Navbar() {
                   <div>
                     <p className="eyebrow">Current Location</p>
                     <p className="menu-overlay__copy">
-                      49th St. Los Angeles, California (CA), 90011
+                      Ahmedabad, Gujarat
                       <br />
-                      United States
+                      India
                     </p>
                   </div>
                 </div>

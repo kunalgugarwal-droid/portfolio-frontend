@@ -8,24 +8,31 @@ function ContactCta() {
     <section className="contact-cta">
       <div className="contact-cta__grid">
         <RevealOnScroll className="contact-cta__copy">
-          <p className="eyebrow">Connect yourself into cyberpunk universe.</p>
+          <p className="eyebrow">LET&apos;S CREATE SOMETHING CINEMATIC</p>
           <h2 className="display-title display-title--compact">
-            Let&apos;s work
+            Let&apos;s create
             <br />
-            together
+            something cinematic
           </h2>
           <p className="hero-copy">
-            Based in Los Angeles, I am an innovative designer and digital artist. My
-            passion for minimalist aesthetics, elegant typography, and intuitive design
-            is evident in my work.
+            I help creators and brands turn raw footage into cinematic, high-impact
+            videos that capture attention and drive engagement.
+            <br /><br />
+            Based in India, working with clients worldwide.
+            <br />
+            Fast delivery. Clean edits. Powerful storytelling.
           </p>
           <div className="contact-cta__actions">
-            <NotchedButton to="/contact">Contact Now*</NotchedButton>
+            <NotchedButton to="/contact">START A PROJECT*</NotchedButton>
             <div className="contact-cta__links">
-              {socialLinks.map((link) => (
-                <a href={link.href} key={link.label} rel="noreferrer" target="_blank">
-                  {link.label}
-                </a>
+              <span className="eyebrow" style={{ marginRight: 8 }}>CONNECT →</span>
+              {socialLinks.map((link, index) => (
+                <span key={link.label}>
+                  <a href={link.href} rel="noreferrer" target="_blank">
+                    {link.label}
+                  </a>
+                  {index < socialLinks.length - 1 && <span className="opacity-30 mx-2">/</span>}
+                </span>
               ))}
             </div>
           </div>

@@ -548,10 +548,15 @@ img {
   animation: marquee 28s linear infinite;
 }
 
-.logo-marquee__item img {
-  width: auto;
-  height: 2.2rem;
+.logo-marquee__item span {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   opacity: 0.82;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 @keyframes marquee {

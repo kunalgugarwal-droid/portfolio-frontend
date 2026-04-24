@@ -19,10 +19,10 @@ function AboutPage() {
   return (
     <>
       <PageHero
-        action={<NotchedButton to="/contact">Learn Detailed*</NotchedButton>}
-        description="Unleash your creativity. Showcase your work and highlight your unique skills to attract new clients."
+        action={<NotchedButton to="/contact">Get In Touch*</NotchedButton>}
+        description="I help creators and brands turn raw footage into cinematic, high-impact videos that capture attention and drive engagement."
         eyebrow="MORE ABOUT"
-        title="DAVIDSON"
+        title="KISHAN MALVIYA"
       />
 
       <Reveal>
@@ -44,8 +44,8 @@ function AboutPage() {
 
       <section className="section">
         <SectionTitle
-          eyebrow="About KD6"
-          title="My approach and strategy live at the point where minimal form meets atmospheric storytelling."
+          eyebrow="About Me"
+          title="My approach blends cinematic storytelling with precise editing to create videos that captivate and convert."
         />
         <div className="mosaic-grid">
           {aboutGallery.map((image, index) => (
@@ -57,7 +57,7 @@ function AboutPage() {
       </section>
 
       <section className="section">
-        <SectionTitle eyebrow="EXPERIENCE" title="Years of direction, systems thinking, and interface craft." />
+        <SectionTitle eyebrow="EXPERIENCE" title="Years of editing, storytelling, and visual craft." />
         <div className="experience-list">
           {experience.map((item, index) => (
             <Reveal className="experience-row" delay={index * 0.06} key={`${item.company}-${item.years}`}>
@@ -89,15 +89,15 @@ function AboutPage() {
       <section className="manifesto manifesto--secondary">
         <Reveal>
           <p className="section-description">
-            A designer crafts visual narratives that blend creativity with
-            functionality, shaping impactful experiences through artful design.
+            A video editor crafts visual narratives that blend storytelling with
+            technical precision, shaping cinematic experiences through artful editing.
           </p>
         </Reveal>
         <Reveal delay={0.1}>
           <p className="manifesto__title">
-            Awe makes
+            Edits make
             <br />
-            things happen.
+            stories hit.
           </p>
         </Reveal>
       </section>
@@ -113,7 +113,7 @@ function AboutPage() {
       <section className="section">
         <SectionTitle
           eyebrow="CAPABILITIES"
-          title="Mastery in crafting user-centric design solutions."
+          title="Focused on delivering clean, cinematic edits with fast turnaround."
         />
         <div className="capability-grid">
           {capabilities.map((capability, index) => (
@@ -149,15 +149,15 @@ function AboutPage() {
       <section className="manifesto manifesto--secondary">
         <Reveal>
           <p className="section-description">
-            With a portfolio of successful brand transformations across various
-            industries, I have earned a reputation for outstanding results.
+            With a portfolio of cinematic edits and visual storytelling across various
+            projects, I have earned a reputation for high-impact results.
           </p>
         </Reveal>
         <Reveal delay={0.1}>
           <p className="manifesto__title">
-            Mind inspires
+            Vision drives
             <br />
-            boundless imagination.
+            cinematic impact.
           </p>
         </Reveal>
       </section>

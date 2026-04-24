@@ -1,3 +1,4 @@
+import heroImage from '../assets/hero-bg.png'
 import ContactCta from '../components/ContactCta.jsx'
 import FAQAccordion from '../components/FAQAccordion.jsx'
 import MediaFrame from '../components/MediaFrame.jsx'
@@ -7,16 +8,13 @@ import TextReveal from '../components/TextReveal.jsx'
 import SectionTitle from '../components/SectionTitle.jsx'
 import Reveal from '../components/Reveal.jsx'
 import {
-  awards,
-  clientLogos,
+  techLabels,
   faqItems,
   getProjectsBySlugs,
   homeFeaturedSlugs,
-  pricingPlans,
   services,
   siteIdentity,
   socialLinks,
-  testimonials,
   workProcess,
 } from '../data/siteData.js'
 
@@ -68,7 +66,7 @@ function HomePage() {
             <img
               alt="Hero portrait"
               className="hero-image-full"
-              src="https://framerusercontent.com/images/Dqh3FA7ENXaHQxWUEi11hFrOF5Y.png"
+              src={heroImage}
             />
           </Reveal>
         </section>
@@ -99,9 +97,9 @@ function HomePage() {
 
       <section className="logo-marquee">
         <div className="logo-marquee__track">
-          {[...clientLogos, ...clientLogos].map((logo, index) => (
-            <div className="logo-marquee__item" key={`${logo.src}-${index}`}>
-              <img alt={logo.name} src={logo.src} />
+          {[...techLabels, ...techLabels].map((label, index) => (
+            <div className="logo-marquee__item" key={`${label}-${index}`}>
+              <span>{label}</span>
             </div>
           ))}
         </div>
@@ -129,8 +127,8 @@ function HomePage() {
       <section className="section">
         <SectionTitle
           action={<NotchedButton to="/work">Explore More*</NotchedButton>}
-          eyebrow="WELCOME TO THE WORK PROCESS"
-          title="A sharp production loop built for futuristic brand systems."
+          eyebrow="MY EDITING WORKFLOW"
+          title="CINEMATIC EDITING PROCESS BUILT FOR HIGH-IMPACT STORYTELLING"
         />
         <div className="process-grid">
           {workProcess.map((group, index) => (
@@ -149,9 +147,9 @@ function HomePage() {
       <section className="section">
         <SectionTitle
           action={<NotchedButton to="/contact">Explore More*</NotchedButton>}
-          description="Providing bespoke design services focused on creative enhancing user engagement and brand identity."
+          description="Specialized in cinematic video editing, color grading, and storytelling for creators, brands, and social media."
           eyebrow="my services"
-          title="Creative modules made for immersive web storytelling."
+          title="CINEMATIC VIDEO EDITING SERVICES FOR HIGH-IMPACT CONTENT"
         />
         <div className="service-grid">
           {services.map((service, index) => (
@@ -172,15 +170,14 @@ function HomePage() {
       <section className="manifesto">
         <Reveal className="manifesto__copy">
           <p className="section-description">
-            I weave together bold strategy and creative execution to produce
-            thought-provoking digital realistic experiences to the users.
+            I specialize in cinematic video editing, color grading, and storytelling for creators and brands.
           </p>
         </Reveal>
         <div className="relative pt-8">
           <TextReveal
             elementType="p"
             className="manifesto__title"
-            text="I am evolutionarily wired to sleek wonder."
+            text="I TURN RAW FOOTAGE INTO HIGH-IMPACT CINEMATIC STORIES."
             split="word"
             staggerDuration={0.08}
           />
@@ -197,20 +194,23 @@ function HomePage() {
 
       <section className="voice-grid">
         <Reveal className="flex flex-col gap-4">
-          <p className="eyebrow">VOICE OF DA-VID</p>
+          <p className="eyebrow">CINEMATIC VIDEO EDITOR</p>
           <TextReveal
             elementType="h2"
             className="section-heading"
-            text="For brands. For agencies."
+            text="FOR BRANDS THAT WANT ATTENTION. FOR CREATORS WHO WANT IMPACT."
             split="word"
             staggerDuration={0.05}
           />
-          <p className="voice-grid__code pt-4">_D4V1D*M00R3_5H / r9H4DnOj6LVw2C</p>
+          <p className="voice-grid__code pt-4">NETWORK / LINKS</p>
           <div className="voice-grid__links">
-            {socialLinks.map((link) => (
-              <a href={link.href} key={link.label} rel="noreferrer" target="_blank">
-                {link.label}
-              </a>
+            {socialLinks.map((link, index) => (
+              <span key={link.label}>
+                <a href={link.href} rel="noreferrer" target="_blank">
+                  {link.label}
+                </a>
+                {index < socialLinks.length - 1 && <span className="opacity-30 mx-2">/</span>}
+              </span>
             ))}
           </div>
         </Reveal>
@@ -225,39 +225,21 @@ function HomePage() {
 
       <section className="section">
         <SectionTitle
-          description="These honors underscore my commitment to delivering outstanding creative solutions."
-          eyebrow="AWARDS"
-          title="Recognition earned through detail, pace, and digital craft."
+          eyebrow="SERVICES"
+          title="WHAT I CAN DO FOR YOU"
         />
-        <div className="award-list">
-          {awards.map((award, index) => (
-            <Reveal className="award-row" delay={index * 0.05} key={award.index}>
-              <span>{award.index}</span>
-              <span>{award.year}</span>
-              <span>{award.org}</span>
-              <strong>{award.title}</strong>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      <section className="section">
-        <SectionTitle
-          eyebrow="Trusted By International Brands"
-          title="Proof points from teams that needed premium visuals and faster launches."
-        />
-        <div className="testimonial-grid">
-          {testimonials.map((testimonial, index) => (
-            <Reveal className="testimonial-card" delay={index * 0.05} key={testimonial.author}>
-              <p className="testimonial-card__label">{testimonial.label}</p>
-              <p className="testimonial-card__quote">{testimonial.quote}</p>
-              <div className="testimonial-card__author">
-                <img alt={testimonial.author} src={testimonial.avatar} />
-                <div>
-                  <strong>{testimonial.author}</strong>
-                  <p>{testimonial.role}</p>
-                </div>
-              </div>
+        <div className="process-grid">
+          {[
+            { title: 'Reel Editing', description: 'Scroll-stopping short-form edits optimized for Instagram and TikTok.' },
+            { title: 'YouTube Editing', description: 'Engaging long-form edits with pacing, cuts, and retention hooks.' },
+            { title: 'Color Grading', description: 'Cinematic color correction that sets the mood and elevates your footage.' },
+            { title: 'Sound Design', description: 'Precise audio mixing, SFX layering, and music sync for immersive videos.' },
+            { title: 'Motion Graphics', description: 'Clean titles, lower thirds, and animated elements to polish your content.' },
+            { title: 'Fast Delivery', description: 'Quick turnaround without compromising on quality or attention to detail.' },
+          ].map((item, index) => (
+            <Reveal className="process-card" delay={index * 0.08} key={item.title}>
+              <p className="process-card__phase">{item.title}</p>
+              <p>{item.description}</p>
             </Reveal>
           ))}
         </div>
@@ -273,33 +255,24 @@ function HomePage() {
 
       <section className="section">
         <SectionTitle
-          eyebrow="BIG OR SMALL?"
-          title="I have a plan."
+          eyebrow="READY TO START?"
+          title="LET'S WORK TOGETHER"
+          description="Have a project in mind? Let's create something cinematic and impactful."
         />
-        <div className="pricing-grid">
-          {pricingPlans.map((plan, index) => (
-            <Reveal className="pricing-card" delay={index * 0.08} key={plan.name}>
-              <p className="eyebrow">{plan.eyebrow}</p>
-              <h3>{plan.name}</h3>
-              <p className="pricing-card__price">{plan.price}</p>
-              <p className="pricing-card__kicker">{plan.kicker}</p>
-              <p>{plan.summary}</p>
-              <p className="pricing-card__description">{plan.description}</p>
-              <ul>
-                {plan.features.map((feature) => (
-                  <li key={feature}>{feature}</li>
-                ))}
-              </ul>
-              <NotchedButton to="/contact" variant={index === 0 ? 'ghost' : 'light'}>
-                {plan.cta}
-              </NotchedButton>
-            </Reveal>
-          ))}
-        </div>
+        <Reveal className="process-grid" style={{ maxWidth: 640 }}>
+          <div className="process-card">
+            <ul>
+              <li>Custom pricing based on your project</li>
+              <li>Fast turnaround &amp; revisions</li>
+              <li>Professional communication</li>
+            </ul>
+            <NotchedButton to="/contact" variant="light">GET IN TOUCH →</NotchedButton>
+          </div>
+        </Reveal>
       </section>
 
       <section className="section" id="faq">
-        <SectionTitle eyebrow="Frequently Asked Questions" title="Need a clearer signal before launch?" />
+        <SectionTitle eyebrow="Frequently Asked Questions" title="HAVE QUESTIONS BEFORE WE START?" />
         <FAQAccordion items={faqItems} />
       </section>
 

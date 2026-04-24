@@ -15,76 +15,62 @@ export const socialLinks = [
   { label: 'Snapchat', href: 'https://snapchat.com/t/7Z5MtOCw' },
 ]
 
-export const clientLogos = [
-  {
-    name: 'Client logo 1',
-    src: 'https://framerusercontent.com/images/sHaOcAuMwn0ZPkaCJQxEgwClfQw.svg',
-  },
-  {
-    name: 'Client logo 2',
-    src: 'https://framerusercontent.com/images/6VR71Lv8PUf1LhjbXOom3ZmUnA.svg',
-  },
-  {
-    name: 'Client logo 3',
-    src: 'https://framerusercontent.com/images/3waxHuywsZWcUmX1iSI27FIs.svg',
-  },
-  {
-    name: 'Client logo 4',
-    src: 'https://framerusercontent.com/images/vcPCH57jN64nnY9cGHwXLOskCg.svg',
-  },
-  {
-    name: 'Client logo 5',
-    src: 'https://framerusercontent.com/images/2UDOqwRzPdSSfeHDWhMGYxcHeo.svg',
-  },
-  {
-    name: 'Client logo 6',
-    src: 'https://framerusercontent.com/images/f3pIzc2J9yxOGZdGUKtOTm0zA.svg',
-  },
+export const techLabels = [
+  'PREMIERE PRO',
+  'AFTER EFFECTS',
+  'DAVINCI RESOLVE',
+  'CAPCUT',
+  'COLOR GRADING',
+  'REEL EDITING',
+  'CINEMATIC CUTS',
+  'SOUND DESIGN',
+  '4K EXPORT',
+  'FAST DELIVERY',
 ]
 
 export const workProcess = [
   {
-    phase: '//PRE',
-    steps: ['Content Strategy', 'Concept Creation', 'Script & Moodboard'],
+    phase: '// PLANNING',
+    steps: ['IDEA DEVELOPMENT', 'SCRIPT & STORYBOARD', 'FOOTAGE REVIEW'],
   },
   {
-    phase: '//Production',
-    steps: ['Front-End', 'AI Implement', 'Motion Design'],
+    phase: '// EDITING',
+    steps: ['ROUGH CUT', 'COLOR GRADING', 'SOUND DESIGN'],
   },
   {
-    phase: '//Post',
-    steps: ['Deployment', 'Auto Enhancing', 'Product Marketing'],
+    phase: '// DELIVERY',
+    steps: ['FINAL EXPORT', 'QUALITY CHECK', 'CLIENT DELIVERY'],
   },
 ]
 
 export const services = [
   {
     number: '//1',
-    title: 'Strategy',
+    title: 'VIDEO EDITING',
     image: 'https://framerusercontent.com/images/wh1mSmkJBGF6JWIaYkIWcb9lg0.png?scale-down-to=2048',
     blurb:
-      'Sharp positioning, content architecture, and experience systems built for digital-first brands.',
+      'Professional editing with smooth cuts, pacing, and storytelling to keep viewers engaged.',
   },
   {
     number: '//2',
-    title: 'Cinematography',
+    title: 'COLOR GRADING',
     image: 'https://framerusercontent.com/images/XiYEANIzqa9tVCZQbVj2aWbCaM.png?scale-down-to=4096',
     blurb:
-      'Moody visual storytelling shaped around atmosphere, motion, and high-contrast frame composition.',
+      'Cinematic color correction and grading to give your videos a professional film look.',
   },
   {
     number: '//3',
-    title: 'Visual Identity',
+    title: 'SOCIAL MEDIA EDITS',
     image: 'https://framerusercontent.com/images/i8nOakHjUU19AOv2uDdvPKxLyuA.png',
     blurb:
-      'Brand systems that feel futuristic, tactile, and instantly recognizable across screens and campaigns.',
+      'High-retention edits for Instagram Reels, YouTube Shorts, and viral content.',
   },
   {
     number: '//4',
-    title: 'Animation',
+    title: 'MOTION & EFFECTS',
     image: 'https://framerusercontent.com/images/XHwMxBypZ9Ql2P3E7tA3jGuVCg8.png',
     blurb:
-      'Scroll-led reveals, parallax depth, and cinematic transitions tuned to feel premium instead of noisy.',
+      'Clean transitions, motion graphics, and visual effects to enhance storytelling.',
   },
 ]
 
@@ -185,42 +171,42 @@ export const pricingPlans = [
 
 export const faqItems = [
   {
-    question: 'What industries do you specialize in?',
+    question: 'What type of videos do you edit?',
     answer:
-      'The template leans toward fashion, product, technology, and culture-led brands, but the system is flexible enough for any premium digital product story.',
+      'I specialize in cinematic edits, reels, YouTube videos, brand promos, and social media content focused on storytelling and engagement.',
   },
   {
-    question: 'What services do you offer as a designer?',
+    question: 'How can I work with you?',
     answer:
-      'Strategy, creative direction, Framer and front-end builds, motion systems, landing pages, and identity work all sit inside the same workflow.',
+      'You can contact me through the contact section or social links. Share your idea, and I\'ll guide you through the process.',
   },
   {
-    question: 'Can you provide examples of your previous work?',
+    question: 'Do you provide custom pricing?',
     answer:
-      'The work routes in this build mirror the original template structure and show six detailed project pages with shared storytelling and image systems.',
+      'Yes. Every project is different, so pricing is based on your requirements, timeline, and complexity.',
   },
   {
-    question: 'How do you approach branding projects?',
+    question: 'How long does a project take?',
     answer:
-      'Every brand starts with positioning and voice, then expands into typography, visuals, UI patterns, and motion so the entire experience feels coherent.',
+      'Turnaround time depends on the project, but most edits are delivered within 2–5 days.',
   },
   {
-    question: 'Can you walk me through your design process?',
+    question: 'Can I request revisions?',
     answer:
-      'The process is intentionally split into pre, production, and post: concept, front-end and motion, then launch support and growth-focused polish.',
+      'Absolutely. I offer revisions to make sure the final result matches your vision.',
   },
   {
-    question: 'What software and tools do you use for your designs?',
+    question: 'What software do you use?',
     answer:
-      'Framer, Figma, React, Notion, ChatGPT, and motion-focused front-end tooling are the stack represented throughout the source template.',
+      'I use Adobe Premiere Pro, After Effects, and other motion design tools.',
   },
 ]
 
 export const aboutStats = [
-  { value: '12+', label: 'Years of experience' },
-  { value: '100+', label: 'Completed Projects' },
-  { value: '$16M', label: 'Partners Raised' },
-  { value: '5.00', label: 'Customer Success' },
+  { value: '3+', label: 'Years of experience' },
+  { value: '100+', label: 'Projects Delivered' },
+  { value: '50+', label: 'Happy Clients' },
+  { value: '5.00', label: 'Client Satisfaction' },
 ]
 
 export const aboutGallery = [
@@ -231,64 +217,57 @@ export const aboutGallery = [
 
 export const experience = [
   {
-    company: 'Clavmen Studio',
-    role: 'Senior UX Designer',
-    years: '2022 - Present',
-    summary: 'Clavmen inspires creativity and makes learning piano fun. The sleek.',
-  },
-  {
-    company: 'Losify',
-    role: 'Lead Product Designer',
-    years: '2013 - 2022',
-    summary:
-      'Fitness and well-being with personalized coaching and innovative wellness solutions.',
-  },
-  {
-    company: 'Gamadias',
-    role: 'Junior UX Designer',
-    years: '2012 - 2013',
-    summary:
-      'Gaming experiences with innovative technology and unparalleled performance.',
-  },
-  {
     company: 'Freelance',
-    role: 'Web Designer',
-    years: '2010 - 2012',
+    role: 'Cinematic Video Editor',
+    years: '2023 - Present',
+    summary: 'Delivering cinematic edits, reels, and brand videos for creators and businesses worldwide.',
+  },
+  {
+    company: 'Content Studios',
+    role: 'Senior Video Editor',
+    years: '2022 - 2023',
     summary:
-      'Bringing creativity, technical expertise, and a passion for design to every project.',
+      'Edited YouTube videos, brand promos, and social media content with a focus on storytelling.',
+  },
+  {
+    company: 'Media Agency',
+    role: 'Junior Video Editor',
+    years: '2021 - 2022',
+    summary:
+      'Color grading, motion graphics, and short-form content editing for digital campaigns.',
   },
 ]
 
 export const stack = [
-  { index: '[1]', title: 'Framer', subtitle: 'No code tool', score: '99%' },
-  { index: '[2]', title: 'Figma', subtitle: 'Web designing tool', score: '100%' },
-  { index: '[3]', title: 'ChatGPT', subtitle: 'Chat AI assistance', score: '88%' },
-  { index: '[4]', title: 'Notion', subtitle: 'Productivity platform', score: '91%' },
-  { index: '[5]', title: 'React', subtitle: 'JavaScript UI library', score: '94%' },
-  { index: '[6]', title: 'Midjourney', subtitle: 'AI image generation', score: '96%' },
+  { index: '[1]', title: 'Premiere Pro', subtitle: 'Video editing', score: '99%' },
+  { index: '[2]', title: 'After Effects', subtitle: 'Motion graphics', score: '95%' },
+  { index: '[3]', title: 'DaVinci Resolve', subtitle: 'Color grading', score: '90%' },
+  { index: '[4]', title: 'CapCut', subtitle: 'Short-form editing', score: '92%' },
+  { index: '[5]', title: 'Photoshop', subtitle: 'Thumbnail design', score: '88%' },
+  { index: '[6]', title: 'Audition', subtitle: 'Audio editing', score: '85%' },
 ]
 
 export const capabilities = [
   {
-    title: 'Landing Pages & Websites',
-    price: '$3200+',
+    title: 'Reels & Short-form Editing',
+    price: 'Custom',
     image: 'https://framerusercontent.com/images/mu9LVeTRBIPX3uyxOzWnDFDSho.webp',
     summary:
-      'Landing pages designed to convert visitors into engaged users effortlessly.',
+      'Scroll-stopping short-form edits optimized for Instagram Reels, YouTube Shorts, and TikTok.',
   },
   {
-    title: 'Mobile Apps',
-    price: '$2400+',
+    title: 'YouTube Video Editing',
+    price: 'Custom',
     image: 'https://framerusercontent.com/images/jOt5kEeZXfUddTjxWq869upo.webp',
     summary:
-      'Leading the forefront of mobile app development with advanced technologies.',
+      'Engaging long-form edits with pacing, retention hooks, and cinematic storytelling.',
   },
   {
-    title: 'Logos & Branding',
-    price: '$5200+',
+    title: 'Brand & Promo Videos',
+    price: 'Custom',
     image: 'https://framerusercontent.com/images/5Xu4XRlNgdNIPqFEhA5UU5Zlwc.webp',
     summary:
-      'Unique brand identities that forge memorable connections through strategic narrative.',
+      'High-impact brand videos and promos that drive engagement and conversions.',
   },
 ]
 
@@ -377,7 +356,7 @@ export const projects = [
   {
     slug: 'hideaway',
     title: 'Highway Surf',
-    category: 'Web Design',
+    category: 'Cinematic Edit',
     client: 'Lee Clinton',
     year: '2022',
     intro:
@@ -433,13 +412,13 @@ export const homeFeaturedSlugs = [
 
 export const projectNarrative = {
   concept:
-    '/// Informing decision-making: Research provides data and evidence to support design decisions. It helps designers make informed choices about layout, color schemes, typography, and other design elements, leading to more effective and user-friendly websites.',
+    '/// Every great video starts with a clear concept. I review your raw footage, understand your story, and plan the edit structure to maximize engagement and visual impact.',
   development:
-    '/// Usability and accessibility: Good design considers the needs and preferences of users, ensuring that the website is easy to navigate and understand. Intuitive navigation, clear hierarchy, and logical organization of content enhance usability and accessibility.',
+    '/// The editing process focuses on pacing, transitions, and flow. I ensure every cut serves the story, keeping viewers hooked from start to finish with cinematic techniques.',
   problem:
-    "/// Development optimizes the website's performance by optimizing code, reducing file sizes, and improving loading times. A fast-loading website enhances user experience, reduces bounce rates, and improves search engine rankings.",
+    '/// Color grading, sound design, and motion graphics are layered in to elevate the production value. Every detail is refined for a polished, professional result.',
   solution:
-    '/// Informing decision-making: Research provides data and evidence to support design decisions. It helps designers make informed choices about layout, color schemes, typography, and other design elements, leading to more effective and user-friendly websites.',
+    '/// TOOLS → Premiere Pro / After Effects / DaVinci Resolve / CapCut. Final exports are optimized for every platform, from YouTube to Instagram to broadcast.',
 }
 
 export function getProjectBySlug(slug) {
