@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import heroImage from '../assets/hero-bg.png'
 import ContactCta from '../components/ContactCta.jsx'
 import FAQAccordion from '../components/FAQAccordion.jsx'
@@ -18,23 +19,69 @@ import {
   workProcess,
 } from '../data/siteData.js'
 
-const featuredProjects = getProjectsBySlugs(homeFeaturedSlugs).map((project, index) => ({
-  ...project,
-  title: [
-    'CINEMATIC EDIT',
-    'INSTAGRAM REEL',
-    'YOUTUBE VIDEO',
-    'CLIENT PROJECT',
-  ][index] ?? project.title,
-  category: [
-    'VIDEO EDITING',
-    'REEL EDIT',
-    'CONTENT EDIT',
-    'VIDEO EDITING',
-  ][index] ?? project.category,
-}))
+const API_URL = 'http://localhost:5000/api/projects'
 
 function HomePage() {
+  const [featuredProjects, setFeaturedProjects] = useState(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const res = await fetch(API_URL)
+        const data = await res.json()
+        
+        if (data && data.length > 0) {
+          // Transform API response to match ProjectCard format
+          const transformed = data.slice(0, 4).map((project, index) => ({
+            slug: project._id,
+            heroImage: project.image,
+            title: project.title,
+            category: project.category?.toUpperCase() || 'PROJECT',
+            description: project.description || '',
+          }))
+          setFeaturedProjects(transformed)
+        } else {
+          // Fallback to hardcoded projects
+          setFeaturedProjects(getProjectsBySlugs(homeFeaturedSlugs).map((project, index) => ({
+            ...project,
+            title: [
+              'CINEMATIC EDIT',
+              'INSTAGRAM REEL',
+              'YOUTUBE VIDEO',
+              'CLIENT PROJECT',
+            ][index] ?? project.title,
+            category: [
+              'VIDEO EDITING',
+              'REEL EDIT',
+              'CONTENT EDIT',
+              'VIDEO EDITING',
+            ][index] ?? project.category,
+          })))
+        }
+      } catch (err) {
+        // Fallback to hardcoded projects on error
+        setFeaturedProjects(getProjectsBySlugs(homeFeaturedSlugs).map((project, index) => ({
+          ...project,
+          title: [
+            'CINEMATIC EDIT',
+            'INSTAGRAM REEL',
+            'YOUTUBE VIDEO',
+            'CLIENT PROJECT',
+          ][index] ?? project.title,
+          category: [
+            'VIDEO EDITING',
+            'REEL EDIT',
+            'CONTENT EDIT',
+            'VIDEO EDITING',
+          ][index] ?? project.category,
+        })))
+      }
+      setLoading(false)
+    }
+
+    fetchProjects()
+  }, [])
   return (
     <>
       <div className="homepage-hero-wrapper">
@@ -113,7 +160,7 @@ function HomePage() {
           title="Featured work"
         />
         <div className="project-grid project-grid--featured">
-          {featuredProjects.map((project, index) => (
+          {!loading && featuredProjects && featuredProjects.map((project, index) => (
             <ProjectCard
               delay={index * 0.08}
               key={project.slug}
