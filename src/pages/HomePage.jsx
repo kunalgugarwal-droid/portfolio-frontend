@@ -19,7 +19,7 @@ import {
   workProcess,
 } from '../data/siteData.js'
 
-const API_URL = 'http://localhost:5000/api/projects'
+const API_URL = 'https://kishan-portfolio-fullstack.onrender.com/api/projects'
 
 function HomePage() {
   const [featuredProjects, setFeaturedProjects] = useState(null)
