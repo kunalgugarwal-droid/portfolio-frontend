@@ -10,6 +10,38 @@ import NotFoundPage from './NotFoundPage.jsx'
 
 const API_URL = 'https://kishan-portfolio-fullstack.onrender.com/api/projects'
 
+// Helper function to convert YouTube URLs to embed URLs
+function getYouTubeEmbedUrl(url) {
+  if (!url) return ""
+
+  try {
+    const parsedUrl = new URL(url)
+
+    if (parsedUrl.hostname.includes("youtube.com")) {
+      if (parsedUrl.pathname.startsWith("/embed/")) {
+        return url
+      }
+
+      if (parsedUrl.pathname.startsWith("/shorts/")) {
+        const videoId = parsedUrl.pathname.split("/shorts/")[1]?.split("?")[0]
+        return videoId ? `https://www.youtube.com/embed/${videoId}` : ""
+      }
+
+      const videoId = parsedUrl.searchParams.get("v")
+      return videoId ? `https://www.youtube.com/embed/${videoId}` : ""
+    }
+
+    if (parsedUrl.hostname.includes("youtu.be")) {
+      const videoId = parsedUrl.pathname.replace("/", "").split("?")[0]
+      return videoId ? `https://www.youtube.com/embed/${videoId}` : ""
+    }
+
+    return ""
+  } catch (error) {
+    return ""
+  }
+}
+
 function ProjectPage() {
   const { slug } = useParams()
   const [mongoProject, setMongoProject] = useState(null)
@@ -144,32 +176,49 @@ function ProjectPage() {
 
   // MongoDB project found
   if (mongoProject) {
+    const embedUrl = getYouTubeEmbedUrl(mongoProject.videoUrl || mongoProject.youtubeUrl)
+
     return (
       <>
-        <section className="project-header" id="top">
-          <Reveal className="project-header__intro">
-            <h1 className="project-header__title">{mongoProject.title}</h1>
-            <p className="project-header__copy">{mongoProject.description || 'Project details'}</p>
-          </Reveal>
-          <Reveal className="project-header__meta" delay={0.1}>
-            <div className="project-header__stat">
-              <span>Category</span>
-              <strong>{mongoProject.category}</strong>
+        {embedUrl ? (
+          <section className="project-video-hero">
+            <div className="project-video-player">
+              <iframe
+                src={`${embedUrl}?rel=0&modestbranding=1`}
+                title={mongoProject.title || "Project video"}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              ></iframe>
             </div>
-            {mongoProject.videoUrl && (
-              <div className="project-header__stat">
-                <span>Video</span>
-                <NotchedButton href={mongoProject.videoUrl} target="_blank">
-                  Watch Video
-                </NotchedButton>
-              </div>
-            )}
-          </Reveal>
-        </section>
 
-        <Reveal>
-          <MediaFrame alt={mongoProject.title} className="feature-band" src={mongoProject.image} />
-        </Reveal>
+            <div className="project-video-info">
+              <p className="project-video-label">Now Playing</p>
+              <h1>{mongoProject.title}</h1>
+              <p>{mongoProject.description}</p>
+              <p className="project-category">{mongoProject.category}</p>
+            </div>
+          </section>
+        ) : (
+          <>
+            <section className="project-header" id="top">
+              <Reveal className="project-header__intro">
+                <h1 className="project-header__title">{mongoProject.title}</h1>
+                <p className="project-header__copy">{mongoProject.description || 'Project details'}</p>
+              </Reveal>
+              <Reveal className="project-header__meta" delay={0.1}>
+                <div className="project-header__stat">
+                  <span>Category</span>
+                  <strong>{mongoProject.category}</strong>
+                </div>
+              </Reveal>
+            </section>
+
+            <Reveal>
+              <MediaFrame alt={mongoProject.title} className="feature-band" src={mongoProject.image} />
+            </Reveal>
+          </>
+        )}
 
         {mongoProject.description && (
           <section className="section section--narrow">

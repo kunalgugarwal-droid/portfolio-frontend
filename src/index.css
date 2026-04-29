@@ -50,6 +50,71 @@ body {
   color: var(--text);
 }
 
+/* YouTube Video Hero (IMDb-style) */
+.project-video-hero {
+  width: 100%;
+  min-height: 70vh;
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(280px, 0.8fr);
+  gap: 28px;
+  align-items: center;
+  padding: 80px 6vw 50px;
+  background: #050505;
+}
+
+.project-video-player {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.55);
+}
+
+.project-video-player iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.project-video-info {
+  color: #fff;
+}
+
+.project-video-label {
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.65;
+  margin-bottom: 14px;
+}
+
+.project-video-info h1 {
+  font-size: clamp(32px, 5vw, 72px);
+  line-height: 0.95;
+  margin-bottom: 18px;
+}
+
+.project-video-info p {
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.7;
+}
+
+.project-category {
+  margin-top: 18px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 12px;
+}
+
+@media (max-width: 900px) {
+  .project-video-hero {
+    grid-template-columns: 1fr;
+    padding: 70px 20px 40px;
+  }
+}
+
 .custom-cursor {
   position: fixed;
   top: 0;
