@@ -1,8 +1,10 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { getProjectsBySlugs, homeFeaturedSlugs } from '../data/siteData.js'
 import NotchedButton from './NotchedButton.jsx'
+
+const API_FEATURED = 'https://kishan-portfolio-fullstack.onrender.com/api/projects/featured'
+const API_ALL = 'https://kishan-portfolio-fullstack.onrender.com/api/projects'
 
 const navItems = [
   { label: 'Home', to: '/' },
@@ -10,22 +12,6 @@ const navItems = [
   { label: 'Work', to: '/work' },
   { label: 'Contact', to: '/contact' },
 ]
-
-const featuredMenuProjects = getProjectsBySlugs(homeFeaturedSlugs).map((project, index) => ({
-  ...project,
-  title: [
-    'CINEMATIC EDIT',
-    'INSTAGRAM REEL',
-    'YOUTUBE VIDEO',
-    'CLIENT PROJECT',
-  ][index] ?? project.title,
-  category: [
-    'VIDEO EDITING',
-    'REEL EDIT',
-    'CONTENT EDIT',
-    'VIDEO EDITING',
-  ][index] ?? project.category,
-}))
 const MotionAside = motion.aside
 const MotionDiv = motion.div
 
@@ -41,6 +27,8 @@ function formatTime() {
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [time, setTime] = useState(formatTime())
+  const [menuProjects, setMenuProjects] = useState([])
+  const [projectsLoading, setProjectsLoading] = useState(true)
 
   useEffect(() => {
     const interval = window.setInterval(() => setTime(formatTime()), 1000)
@@ -53,6 +41,50 @@ function Navbar() {
       document.body.style.overflow = ''
     }
   }, [menuOpen])
+
+  // Fetch projects for menu overlay
+  useEffect(() => {
+    let cancelled = false
+    const fetchMenuProjects = async () => {
+      try {
+        // Try featured projects first
+        const featuredRes = await fetch(API_FEATURED)
+        const featuredData = await featuredRes.json()
+
+        if (!cancelled && featuredData && featuredData.length > 0) {
+          setMenuProjects(
+            featuredData.slice(0, 4).map((p) => ({
+              id: p._id,
+              title: p.title?.toUpperCase() || 'UNTITLED',
+              category: p.category?.toUpperCase() || 'PROJECT',
+            }))
+          )
+          setProjectsLoading(false)
+          return
+        }
+
+        // Fallback: fetch all projects (latest first)
+        const allRes = await fetch(API_ALL)
+        const allData = await allRes.json()
+
+        if (!cancelled && allData && allData.length > 0) {
+          setMenuProjects(
+            allData.slice(0, 4).map((p) => ({
+              id: p._id,
+              title: p.title?.toUpperCase() || 'UNTITLED',
+              category: p.category?.toUpperCase() || 'PROJECT',
+            }))
+          )
+        }
+      } catch {
+        // Silently fail — empty list will show fallback message
+      }
+      if (!cancelled) setProjectsLoading(false)
+    }
+
+    fetchMenuProjects()
+    return () => { cancelled = true }
+  }, [])
 
   return (
     <>
@@ -140,16 +172,22 @@ function Navbar() {
                   <div>
                     <p className="eyebrow">Featured Work</p>
                     <div className="menu-overlay__projects">
-                      {featuredMenuProjects.map((project) => (
-                        <Link
-                          key={project.slug}
-                          onClick={() => setMenuOpen(false)}
-                          to={`/work/${project.slug}`}
-                        >
-                          <span>{project.title}</span>
-                          <small>///{project.category}</small>
-                        </Link>
-                      ))}
+                      {projectsLoading ? (
+                        <p className="menu-overlay__copy" style={{ opacity: 0.5 }}>Loading work…</p>
+                      ) : menuProjects.length === 0 ? (
+                        <p className="menu-overlay__copy" style={{ opacity: 0.5 }}>No work added yet</p>
+                      ) : (
+                        menuProjects.map((project) => (
+                          <Link
+                            key={project.id}
+                            onClick={() => setMenuOpen(false)}
+                            to={`/work/${project.id}`}
+                          >
+                            <span>{project.title}</span>
+                            <small>///{project.category}</small>
+                          </Link>
+                        ))
+                      )}
                     </div>
                   </div>
                   <div>
