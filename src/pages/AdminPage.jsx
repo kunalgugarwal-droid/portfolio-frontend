@@ -104,8 +104,6 @@ function Toggle({ checked, onChange, label }) {
    ADMIN PAGE
    ═══════════════════════════════════════════════════════════ */
 export default function AdminPage() {
-  const [tab, setTab] = useState('work')
-
   /* ── Work state ───────────────────────────── */
   const [projects, setProjects] = useState([])
   const [workForm, setWorkForm] = useState({
@@ -114,27 +112,14 @@ export default function AdminPage() {
   const [workImgUploading, setWorkImgUploading] = useState(false)
   const [workLoading, setWorkLoading] = useState(false)
 
-  /* ── Services state ───────────────────────── */
-  const [services, setServices] = useState([])
-  const [serviceForm, setServiceForm] = useState({ title: '', image: '' })
-  const [svcImgUploading, setSvcImgUploading] = useState(false)
-  const [svcLoading, setSvcLoading] = useState(false)
-
   /* ── Fetch data ───────────────────────────── */
-  useEffect(() => { fetchProjects(); fetchServices() }, [])
+  useEffect(() => { fetchProjects() }, [])
 
   const fetchProjects = async () => {
     try {
       const res = await fetch(`${API_URL}/projects`)
       setProjects(await res.json())
     } catch (err) { console.error('Failed to fetch projects:', err) }
-  }
-
-  const fetchServices = async () => {
-    try {
-      const res = await fetch(`${API_URL}/services`)
-      setServices(await res.json())
-    } catch (err) { console.error('Failed to fetch services:', err) }
   }
 
   /* ── Work handlers ────────────────────────── */
@@ -175,33 +160,6 @@ export default function AdminPage() {
     } catch (err) { console.error('Failed to delete project:', err) }
   }
 
-  /* ── Service handlers ─────────────────────── */
-  const submitService = async (e) => {
-    e.preventDefault()
-    if (!serviceForm.image) return alert('Please upload an image first')
-    setSvcLoading(true)
-    try {
-      const res = await fetch(`${API_URL}/services`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(serviceForm),
-      })
-      if (res.ok) {
-        setServiceForm({ title: '', image: '' })
-        fetchServices()
-      }
-    } catch (err) { console.error('Failed to create service:', err) }
-    setSvcLoading(false)
-  }
-
-  const deleteService = async (id) => {
-    if (!confirm('Delete this service?')) return
-    try {
-      await fetch(`${API_URL}/services/${id}`, { method: 'DELETE' })
-      fetchServices()
-    } catch (err) { console.error('Failed to delete service:', err) }
-  }
-
   /* ── Render ───────────────────────────────── */
   return (
     <div className="admin">
@@ -209,30 +167,10 @@ export default function AdminPage() {
         {/* Header */}
         <header className="admin__header">
           <h1 className="admin__title">Admin Panel</h1>
-          <p className="admin__subtitle">Manage your work &amp; services</p>
+          <p className="admin__subtitle">Manage your work</p>
         </header>
 
-        {/* Tabs */}
-        <div className="admin__tabs">
-          <button
-            className={`admin__tab ${tab === 'work' ? 'is-active' : ''}`}
-            onClick={() => setTab('work')}
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-            Work
-          </button>
-          <button
-            className={`admin__tab ${tab === 'services' ? 'is-active' : ''}`}
-            onClick={() => setTab('services')}
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
-            Services
-          </button>
-        </div>
-
-        {/* ═══ WORK TAB ═══ */}
-        {tab === 'work' && (
-          <div className="admin__panel">
+        <div className="admin__panel">
             <form onSubmit={submitWork} className="admin__form">
               <div className="admin__form-grid">
                 {/* Left col — image */}
@@ -324,63 +262,6 @@ export default function AdminPage() {
               ))}
             </div>
           </div>
-        )}
-
-        {/* ═══ SERVICES TAB ═══ */}
-        {tab === 'services' && (
-          <div className="admin__panel">
-            <form onSubmit={submitService} className="admin__form">
-              <div className="admin__form-grid">
-                <div className="admin__form-col">
-                  <label className="admin__label">Service Image *</label>
-                  <ImageUpload
-                    value={serviceForm.image}
-                    uploading={svcImgUploading}
-                    onChange={({ uploading, url }) => {
-                      setSvcImgUploading(uploading)
-                      if (url !== undefined) setServiceForm((f) => ({ ...f, image: url }))
-                    }}
-                  />
-                </div>
-                <div className="admin__form-col admin__form-fields">
-                  <div>
-                    <label className="admin__label">Title *</label>
-                    <input
-                      className="admin__input"
-                      type="text"
-                      placeholder="Service title"
-                      value={serviceForm.title}
-                      onChange={(e) => setServiceForm({ ...serviceForm, title: e.target.value })}
-                      required
-                    />
-                  </div>
-                </div>
-              </div>
-              <button type="submit" className="admin__btn" disabled={svcLoading || svcImgUploading}>
-                {svcLoading ? 'Saving…' : 'Add Service'}
-              </button>
-            </form>
-
-            {/* Services list */}
-            <div className="admin__list">
-              <h2 className="admin__list-heading">All Services ({services.length})</h2>
-              {services.length === 0 && <p className="admin__empty">No services yet.</p>}
-              {services.map((s) => (
-                <div key={s._id} className="admin__card">
-                  <img src={s.image} alt={s.title} className="admin__card-img" />
-                  <div className="admin__card-body">
-                    <h3 className="admin__card-title">{s.title}</h3>
-                  </div>
-                  <div className="admin__card-actions">
-                    <button className="admin__btn-sm admin__btn-sm--danger" onClick={() => deleteService(s._id)}>
-                      Delete
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
     </div>
   )
