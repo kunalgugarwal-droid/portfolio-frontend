@@ -1977,3 +1977,24 @@ img {
     border-top: 1px solid var(--border);
   }
 }
+
+/* --- Hero & About Overlap --- */
+.hero-image-section {
+  position: relative;
+  z-index: 1;
+}
+
+.about-transition-wrapper {
+  position: relative;
+  z-index: 5;
+  margin-top: -280px;
+  background: var(--bg);
+  padding-top: 120px;
+}
+
+@media (max-width: 900px) {
+  .about-transition-wrapper {
+    margin-top: -120px;
+    padding-top: 80px;
+  }
+}

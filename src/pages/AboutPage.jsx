@@ -9,9 +9,7 @@ import {
   aboutGallery,
   aboutStats,
   capabilities,
-  experience,
   faqItems,
-  hardware,
   stack,
 } from '../data/siteData.js'
 
@@ -56,21 +54,7 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="section">
-        <SectionTitle eyebrow="EXPERIENCE" title="Years of editing, storytelling, and visual craft." />
-        <div className="experience-list">
-          {experience.map((item, index) => (
-            <Reveal className="experience-row" delay={index * 0.06} key={`${item.company}-${item.years}`}>
-              <div>
-                <h3>{item.company}</h3>
-                <p>{item.role}</p>
-              </div>
-              <span>{item.years}</span>
-              <p>{item.summary}</p>
-            </Reveal>
-          ))}
-        </div>
-      </section>
+
 
       <section className="section">
         <SectionTitle eyebrow="ALL MY STACK" title="Tools tuned for speed, polish, and cinematic presentation." />
@@ -129,22 +113,7 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="section">
-        <SectionTitle eyebrow="hardwares" title="The gear behind the render pipeline." />
-        <div className="hardware-grid">
-          {hardware.map((item, index) => (
-            <Reveal className="hardware-card" delay={index * 0.06} key={item.model}>
-              <MediaFrame alt={item.model} className="hardware-card__media" src={item.image} />
-              <p className="eyebrow">{item.label}</p>
-              <h3>
-                {item.brand}
-                <span>{item.model}</span>
-              </h3>
-              <p>{item.summary}</p>
-            </Reveal>
-          ))}
-        </div>
-      </section>
+
 
       <section className="manifesto manifesto--secondary">
         <Reveal>
