@@ -35,6 +35,14 @@
   box-sizing: border-box;
 }
 
+html, body, #root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
 html {
   background: var(--bg);
   scroll-behavior: smooth;
@@ -195,6 +203,8 @@ img {
 .app-shell {
   position: relative;
   z-index: 1;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .skip-link {
@@ -216,6 +226,7 @@ img {
   flex-direction: column;
   gap: 8rem;
   padding-top: var(--nav-offset);
+  max-width: 100%;
 }
 
 .page-shell > * {
