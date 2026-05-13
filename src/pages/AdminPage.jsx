@@ -103,12 +103,24 @@ function Toggle({ checked, onChange, label }) {
 /* ═══════════════════════════════════════════════════════════
    ADMIN PAGE
    ═══════════════════════════════════════════════════════════ */
+const CATEGORY_OPTIONS = [
+  'Work',
+  'Instagram Reel',
+  'UGC Video',
+  'YouTube Video',
+  'Cinematic Edit',
+  'Client Project',
+  'Brand Video',
+  'Other',
+]
+
 export default function AdminPage() {
   /* ── Work state ───────────────────────────── */
   const [projects, setProjects] = useState([])
   const [workForm, setWorkForm] = useState({
-    title: '', description: '', image: '', videoUrl: '', featured: false,
+    title: '', description: '', image: '', videoUrl: '', featured: false, categoryLabel: 'Work',
   })
+  const [customCategory, setCustomCategory] = useState('')
   const [workImgUploading, setWorkImgUploading] = useState(false)
   const [workLoading, setWorkLoading] = useState(false)
 
@@ -127,14 +139,16 @@ export default function AdminPage() {
     e.preventDefault()
     if (!workForm.image) return alert('Please upload an image first')
     setWorkLoading(true)
+    const finalCategoryLabel = workForm.categoryLabel === 'Other' ? (customCategory.trim() || 'Work') : workForm.categoryLabel
     try {
       const res = await fetch(`${API_URL}/projects`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...workForm, category: 'work' }),
+        body: JSON.stringify({ ...workForm, category: 'work', categoryLabel: finalCategoryLabel }),
       })
       if (res.ok) {
-        setWorkForm({ title: '', description: '', image: '', videoUrl: '', featured: false })
+        setWorkForm({ title: '', description: '', image: '', videoUrl: '', featured: false, categoryLabel: 'Work' })
+        setCustomCategory('')
         fetchProjects()
       }
     } catch (err) { console.error('Failed to create project:', err) }
@@ -219,6 +233,32 @@ export default function AdminPage() {
                     />
                     <YouTubePreview url={workForm.videoUrl} />
                   </div>
+                  <div>
+                    <label className="admin__label">Project Type</label>
+                    <select
+                      className="admin__input"
+                      value={CATEGORY_OPTIONS.includes(workForm.categoryLabel) ? workForm.categoryLabel : 'Other'}
+                      onChange={(e) => {
+                        const val = e.target.value
+                        setWorkForm({ ...workForm, categoryLabel: val })
+                        if (val !== 'Other') setCustomCategory('')
+                      }}
+                    >
+                      {CATEGORY_OPTIONS.map((opt) => (
+                        <option key={opt} value={opt}>{opt}</option>
+                      ))}
+                    </select>
+                    {(workForm.categoryLabel === 'Other' || !CATEGORY_OPTIONS.includes(workForm.categoryLabel)) && (
+                      <input
+                        className="admin__input"
+                        style={{ marginTop: 8 }}
+                        type="text"
+                        placeholder="Enter custom category…"
+                        value={customCategory || (CATEGORY_OPTIONS.includes(workForm.categoryLabel) ? '' : workForm.categoryLabel)}
+                        onChange={(e) => setCustomCategory(e.target.value)}
+                      />
+                    )}
+                  </div>
                   <Toggle
                     checked={workForm.featured}
                     onChange={(v) => setWorkForm({ ...workForm, featured: v })}
@@ -242,6 +282,7 @@ export default function AdminPage() {
                   <div className="admin__card-body">
                     <div className="admin__card-top">
                       <h3 className="admin__card-title">{p.title}</h3>
+                      <span className="admin__badge" style={{ background: '#2a2a2a', color: '#aaa', fontWeight: 500 }}>{p.categoryLabel || 'Work'}</span>
                       {p.featured && <span className="admin__badge">Featured</span>}
                     </div>
                     {p.description && <p className="admin__card-desc">{p.description}</p>}

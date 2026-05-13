@@ -56,7 +56,7 @@ function Navbar() {
             featuredData.slice(0, 4).map((p) => ({
               id: p._id,
               title: p.title?.toUpperCase() || 'UNTITLED',
-              category: p.category?.toUpperCase() || 'PROJECT',
+              category: (p.categoryLabel || p.category || 'Work').toUpperCase(),
             }))
           )
           setProjectsLoading(false)
@@ -72,7 +72,7 @@ function Navbar() {
             allData.slice(0, 4).map((p) => ({
               id: p._id,
               title: p.title?.toUpperCase() || 'UNTITLED',
-              category: p.category?.toUpperCase() || 'PROJECT',
+              category: (p.categoryLabel || p.category || 'Work').toUpperCase(),
             }))
           )
         }

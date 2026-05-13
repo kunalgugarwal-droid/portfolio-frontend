@@ -196,7 +196,7 @@ function ProjectPage() {
               <p className="project-video-label">Now Playing</p>
               <h1>{mongoProject.title}</h1>
               <p>{mongoProject.description}</p>
-              <p className="project-category">{mongoProject.category}</p>
+              <p className="project-category">{mongoProject.categoryLabel || mongoProject.category || 'Work'}</p>
             </div>
           </section>
         ) : (
@@ -209,7 +209,7 @@ function ProjectPage() {
               <Reveal className="project-header__meta" delay={0.1}>
                 <div className="project-header__stat">
                   <span>Category</span>
-                  <strong>{mongoProject.category}</strong>
+                  <strong>{mongoProject.categoryLabel || mongoProject.category || 'Work'}</strong>
                 </div>
               </Reveal>
             </section>

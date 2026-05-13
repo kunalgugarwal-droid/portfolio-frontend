@@ -21,7 +21,7 @@ function WorkPage() {
             slug: project._id, // Use _id as slug for routing
             heroImage: project.image,
             title: project.title,
-            category: project.category?.toUpperCase() || 'PROJECT',
+            category: (project.categoryLabel || project.category || 'Work').toUpperCase(),
             description: project.description || '',
           }))
           setProjects(transformed)
