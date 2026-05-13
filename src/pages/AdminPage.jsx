@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const API_URL = 'https://kishan-portfolio-fullstack.onrender.com/api'
 const CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME
@@ -114,6 +115,8 @@ const CATEGORY_OPTIONS = [
 ]
 
 export default function AdminPage() {
+  const navigate = useNavigate()
+
   /* ── Work state ───────────────────────────── */
   const [projects, setProjects] = useState([])
   const [workForm, setWorkForm] = useState({
@@ -124,7 +127,13 @@ export default function AdminPage() {
   const [workLoading, setWorkLoading] = useState(false)
 
   /* ── Fetch data ───────────────────────────── */
-  useEffect(() => { fetchProjects() }, [])
+  useEffect(() => { 
+    if (localStorage.getItem('adminLoggedIn') !== 'true') {
+      navigate('/admin-login')
+    } else {
+      fetchProjects() 
+    }
+  }, [navigate])
 
   const fetchProjects = async () => {
     try {
@@ -173,14 +182,24 @@ export default function AdminPage() {
     } catch (err) { console.error('Failed to delete project:', err) }
   }
 
+  const handleLogout = () => {
+    localStorage.removeItem('adminLoggedIn')
+    navigate('/admin-login')
+  }
+
   /* ── Render ───────────────────────────────── */
   return (
     <div className="admin">
       <div className="admin__container">
         {/* Header */}
-        <header className="admin__header">
-          <h1 className="admin__title">Admin Panel</h1>
-          <p className="admin__subtitle">Manage your work</p>
+        <header className="admin__header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div>
+            <h1 className="admin__title">Admin Panel</h1>
+            <p className="admin__subtitle">Manage your work</p>
+          </div>
+          <button className="admin__btn-sm admin__btn-sm--danger" onClick={handleLogout} style={{ padding: '0.5rem 1rem' }}>
+            Logout
+          </button>
         </header>
 
         <div className="admin__panel">
