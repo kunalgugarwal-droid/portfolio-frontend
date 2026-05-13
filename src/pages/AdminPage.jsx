@@ -106,7 +106,6 @@ function Toggle({ checked, onChange, label }) {
 const CATEGORY_OPTIONS = [
   'Work',
   'Instagram Reel',
-  'UGC Video',
   'YouTube Video',
   'Cinematic Edit',
   'Client Project',
