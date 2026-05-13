@@ -125,6 +125,7 @@ export default function AdminPage() {
   const [customCategory, setCustomCategory] = useState('')
   const [workImgUploading, setWorkImgUploading] = useState(false)
   const [workLoading, setWorkLoading] = useState(false)
+  const [editingProjectId, setEditingProjectId] = useState(null)
 
   /* ── Fetch data ───────────────────────────── */
   useEffect(() => { 
@@ -149,18 +150,47 @@ export default function AdminPage() {
     setWorkLoading(true)
     const finalCategoryLabel = workForm.categoryLabel === 'Other' ? (customCategory.trim() || 'Work') : workForm.categoryLabel
     try {
-      const res = await fetch(`${API_URL}/projects`, {
-        method: 'POST',
+      const url = editingProjectId ? `${API_URL}/projects/${editingProjectId}` : `${API_URL}/projects`
+      const method = editingProjectId ? 'PUT' : 'POST'
+
+      const res = await fetch(url, {
+        method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...workForm, category: 'work', categoryLabel: finalCategoryLabel }),
       })
       if (res.ok) {
         setWorkForm({ title: '', description: '', image: '', videoUrl: '', featured: false, categoryLabel: 'Work' })
         setCustomCategory('')
+        setEditingProjectId(null)
         fetchProjects()
       }
-    } catch (err) { console.error('Failed to create project:', err) }
+    } catch (err) { console.error('Failed to save project:', err) }
     setWorkLoading(false)
+  }
+
+  const handleEditClick = (project) => {
+    setEditingProjectId(project._id)
+    const catLabel = project.categoryLabel || 'Work'
+    setWorkForm({
+      title: project.title || '',
+      description: project.description || '',
+      image: project.image || '',
+      videoUrl: project.videoUrl || project.youtubeUrl || '',
+      featured: project.featured || false,
+      categoryLabel: CATEGORY_OPTIONS.includes(catLabel) ? catLabel : 'Other'
+    })
+    if (!CATEGORY_OPTIONS.includes(catLabel)) {
+      setCustomCategory(catLabel)
+    } else {
+      setCustomCategory('')
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  const cancelEdit = () => {
+    setEditingProjectId(null)
+    setWorkForm({ title: '', description: '', image: '', videoUrl: '', featured: false, categoryLabel: 'Work' })
+    setCustomCategory('')
   }
 
   const toggleFeatured = async (project) => {
@@ -285,9 +315,16 @@ export default function AdminPage() {
                 </div>
               </div>
 
-              <button type="submit" className="admin__btn" disabled={workLoading || workImgUploading}>
-                {workLoading ? 'Saving…' : 'Add Work'}
-              </button>
+              <div style={{ display: 'flex', gap: '1rem' }}>
+                <button type="submit" className="admin__btn" disabled={workLoading || workImgUploading} style={{ flex: 1 }}>
+                  {workLoading ? 'Saving…' : (editingProjectId ? 'Update Work' : 'Add Work')}
+                </button>
+                {editingProjectId && (
+                  <button type="button" className="admin__btn" style={{ flex: 1, background: '#333' }} onClick={cancelEdit}>
+                    Cancel Edit
+                  </button>
+                )}
+              </div>
             </form>
 
             {/* Work list */}
@@ -306,6 +343,9 @@ export default function AdminPage() {
                     {p.description && <p className="admin__card-desc">{p.description}</p>}
                   </div>
                   <div className="admin__card-actions">
+                    <button className="admin__btn-sm" onClick={() => handleEditClick(p)}>
+                      Edit
+                    </button>
                     <button
                       className={`admin__btn-sm ${p.featured ? 'admin__btn-sm--active' : ''}`}
                       onClick={() => toggleFeatured(p)}
